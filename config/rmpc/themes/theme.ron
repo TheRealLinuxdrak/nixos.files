@@ -1,0 +1,153 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    scrollbar: (
+        symbols: [" ", " ", " ", " "],
+    ),
+
+    progress_bar: (
+        symbols: ["█", "█", " "],
+        track_style: (fg: "white"),
+        elapsed_style: (fg: "white"),
+        thumb_style: (fg: "white"),
+    ),
+
+    cava: (
+        bar_symbols: ['▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'],
+        bar_width: 1,
+        bar_spacing: 1,
+        orientation: Bottom,
+        bar_color: Single("white"),
+    ),
+
+    components: {
+        "state": Pane(Property(
+            content: [
+                (kind: Text("["), style: (fg: "yellow", modifiers: "Bold")),
+                (kind: Property(Status(StateV2())), style: (fg: "yellow", modifiers: "Bold")),
+                (kind: Text("] "), style: (fg: "yellow", modifiers: "Bold")),
+            ],
+            align: Center,
+        )),
+        
+        "elapsed_and_bitrate": Pane(Property(
+            content: [
+                (kind: Property(Status(Elapsed))),
+                (kind: Text(" / ")),
+                (kind: Property(Status(Duration))),
+                (kind: Group([
+                    (kind: Text(" (")),
+                    (kind: Property(Status(Bitrate))),
+                    (kind: Text(" kbps)")),
+                ])),
+            ],
+            align: Center,
+        )),
+
+        "title": Pane(Property(
+            content: [
+                (kind: Property(Song(Title)), style: (modifiers: "Bold"), default: (kind: Text("No Song"), style: (modifiers: "Bold"))),
+            ],
+            align: Center,
+            scroll_speed: 1
+        )),
+        
+        "artist_album": Pane(Property(
+            content: [
+                (kind: Property(Song(Artist)), style: (fg: "yellow", modifiers: "Bold"), default: (kind: Text("Unknown"), style: (fg: "yellow", modifiers: "Bold"))),
+                (kind: Text(" - ")),
+                (kind: Property(Song(Album)), default: (kind: Text("Unknown Album")))
+            ],
+            align: Center,
+            scroll_speed: 2
+        )),
+
+        "volume": Pane(Property(
+            content: [
+                (kind: Text("Volume: "), style: (fg: "white")), 
+                (kind: Property(Status(Volume)), style: (fg: "white")), 
+                (kind: Text("%"), style: (fg: "white")),
+            ],
+            align: Center
+        )),
+        
+        "states": Pane(Property(
+            content: [
+                (kind: Text("["), style: (fg: "white")),
+                (kind: Property(Status(RepeatV2( on_label: "z", off_label: "z", on_style: (fg: "yellow", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim") )))),
+                (kind: Property(Status(RandomV2( on_label: "x", off_label: "x", on_style: (fg: "yellow", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim") )))),
+                (kind: Property(Status(SingleV2( on_label: "v", off_label: "v", oneshot_label: "v", on_style: (fg: "yellow", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim"), oneshot_style: (fg: "red", modifiers: "Bold") )))),
+                (kind: Property(Status(ConsumeV2( on_label: "c", off_label: "c", oneshot_label: "c", on_style: (fg: "yellow", modifiers: "Bold"), off_style: (fg: "white", modifiers: "Dim"), oneshot_style: (fg: "red", modifiers: "Dim") )))),
+                (kind: Text("]"), style: (fg: "white")),
+            ],
+            align: Center
+        )),
+
+        "header_left": Split(
+            direction: Vertical,
+            panes: [
+                ( size: "50%", pane: Component("state") ),
+                ( size: "50%", pane: Component("elapsed_and_bitrate") ),
+            ]
+        ),
+        "header_center": Split(
+            direction: Vertical,
+            panes: [
+                ( size: "50%", pane: Component("title") ),
+                ( size: "50%", pane: Component("artist_album") ),
+            ]
+        ),
+        "header_right": Split(
+            direction: Vertical,
+            panes: [
+                ( size: "50%", pane: Component("volume") ),
+                ( size: "50%", pane: Component("states") ),
+            ]
+        ),
+        
+        "header_full": Split(
+            direction: Horizontal,
+            panes: [
+                ( size: "25", pane: Component("header_left") ),
+                ( size: "100%", pane: Component("header_center") ),
+                ( size: "25", pane: Component("header_right") ),
+            ]
+        ),
+
+        "progress_bar": Split(
+            direction: Horizontal,
+            panes: [
+                ( 
+                    pane: Pane(Property(
+                        content: [
+                                // (kind: Text(" ")), 
+                                (kind: Property(Status(InputMode())), style: (fg: "white")), 
+                        ], 
+                        align: Center
+                    )), 
+                    size: "15", 
+                ),
+                ( size: "100%", pane: Pane(ProgressBar), ),
+                ( size: "15", pane: Pane(Property(
+                    content: [
+                        (kind: Property(Status(Elapsed))),
+                        (kind: Text(" / ")),
+                        (kind: Property(Status(Duration))),
+                        (kind: Text(" ")), // 1 mezera od pravého okraje
+                    ],
+                    align: Right,
+                ))),
+            ]
+        ),
+    },
+
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            ( size: "4", borders: "ALL", pane: Component("header_full") ),
+            ( size: "100%", borders: "ALL", pane: Pane(TabContent) ),
+            ( size: "3", borders: "ALL", pane: Component("progress_bar") ),
+        ]
+    ),
+)

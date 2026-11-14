@@ -1,0 +1,129 @@
+{
+    "layer": "top",
+    "height": 32,
+    "spacing": 6,
+
+    "modules-left": [
+        "niri/workspaces",
+        "niri/window"
+    ],
+
+    "modules-center": [
+        "clock"
+ //     "custom/weather"
+    ],
+
+    "modules-right": [
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "cpu",
+        "memory",
+        "temperature",
+                
+    ],
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "active": "",
+            "default": "",
+            "empty": "󰨐"
+       },
+        "hide-empty": true,
+        "on-scroll-up": "niri msg action focus-workspace-up",
+        "on-scroll-down": "niri msg action focus-workspace-down"
+    },
+
+    "niri/window": {
+        "tooltip": false,
+        "format": "{app_id}",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+
+    "clock": {
+        "tooltip": false,
+        "format": "{:%A, %d %B %H:%M}",
+        "on-click": "footclient -a Calcurse -T Calcurse calcurse",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+//weather
+/*  "custom/weather": {
+        "class": "weather",
+        "exec": "~/nixos.files/config/waybar/weather.sh",   
+        "format": "{} ",
+        "interval": 3600,
+        "tooltip": false,
+        "on-click": "footclient -a weather-term --hold bash -c 'curl -s wttr.in/Praha | grep -v \"Follow\"'"
+    },   */
+
+    "cpu": {
+        "format": "<span letter_spacing='16384'></span>{usage}%",
+        "tooltip": false,
+        "on-click": "footclient -a Btop++ -T Btop++ btop",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+    "memory": {
+        "format": "<span letter_spacing='17408'></span>{}%",
+        "on-click": "footclient -a Btop++ -T Btop++ btop",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+    "temperature": {
+        "tooltip": false,
+        "critical-threshold": 80,
+        "format": "<span letter_spacing='4096'>{icon}</span>{temperatureC}°C<span letter_spacing='14336'>&#8203;</span>",
+        "format-icons": ["", "", ""],
+        // "on-click": "footclient --hold -a AsusCtl -T AsusCtl asusctl profile get",  //asuss
+        "on-click": "footclient --hold -a PowerProfilesCtl -T PowerProfilesCtl powerprofilesctl get",          
+        // "on-click-right": "asusctl profile next",  //asuss
+        "on-click-right": "~/nixos.files/config/waybar/powerprofilesctl.sh",  
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+
+    "network": {
+        "tooltip": false,
+        "format-wifi": " ",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰤭 ",
+        "on-click": "footclient -a NMtui -T NMtui nmtui-run",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+    
+
+    "bluetooth": {
+        "tooltip": false,
+        "format": "",
+        "format-connected": "",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "on-click": "footclient -a Bluetuith -T Bluetuith bluetuith",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    },
+
+    "pulseaudio": {
+        "tooltip": false,
+        "format": "<span letter_spacing='10240'>{icon}</span>{volume}%",
+        "format-muted": "<span letter_spacing='10240'>󰝟</span>{volume}%",
+        "format-icons": {
+            "default": ["󰕾"]
+        },
+        "on-click": "footclient -a Pulsemixer -T Pulsemixer pulsemixer",
+        "on-scroll-up": "niri msg action focus-column-left",
+        "on-scroll-down": "niri msg action focus-column-right"
+    }
+
+}
+0

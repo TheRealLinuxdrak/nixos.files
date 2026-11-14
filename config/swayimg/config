@@ -1,0 +1,43 @@
+[general]
+mode = viewer
+
+[list]
+all = yes
+# Options: alpha, numeric, mtime, size, random 
+order = mtime
+# Options: no, yes
+reverse = no
+
+[viewer]
+window = #000000
+transparency = #000000
+
+[gallery]
+window = #000000
+background = #000000
+selected_scale = 1
+
+antialiasing = box
+cache = 50
+# Turn on cache to ~/.cache/swayimg (no, yes)
+pstore = yes
+
+[info]
+show = no
+
+[keys.viewer]
+Right = next_file
+Left = prev_file
+Up = zoom +10
+Down = zoom -10
+
+w = step_up 5
+s = step_down 5
+a = step_left 5
+d = step_right 5
+
+ScrollUp = zoom +10
+ScrollDown = zoom -10
+MouseRight = next_file
+MouseLeft = prev_file
+

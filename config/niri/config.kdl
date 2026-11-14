@@ -1,0 +1,284 @@
+input {
+
+keyboard {
+    xkb {
+        layout "cz,us"
+        options "grp:alt_shift_toggle"            
+    }
+    numlock
+}
+touchpad {
+    tap
+    natural-scroll
+    accel-speed 0.2
+}
+mouse {}
+    trackpoint {}
+    // warp-mouse-to-focus
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+gestures {
+    hot-corners { off; }
+}
+
+workspace "1" { }
+workspace "2" { }
+workspace "3" { }
+workspace "4" { }
+
+//monitorr
+//output "eDP-1" {
+//    off
+//}
+
+//monitorr
+//output "HDMI-A-1" {
+//    mode "1920x1080"
+//    scale 1
+//    position x=0 y=0
+//}
+
+cursor {
+    xcursor-size 22
+    xcursor-theme "Bibata-Modern-Ice"
+}
+
+overview {
+    backdrop-color "@base00@"
+}
+
+layer-rule {
+    match namespace="^wallpaper$"
+    place-within-backdrop true
+}
+
+layout {
+    gaps 0
+    background-color "transparent"
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.3333333334
+        proportion 0.5
+        proportion 0.6666666667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        off
+        width 0.1
+        active-color "@base0E@"
+    }
+
+    border {
+        on // border-toggle
+        width 1.3
+        active-color "@base0E@"
+        inactive-color "@base01@"
+        urgent-color "@base08@"
+    }
+
+    shadow {
+        off
+        softness 30
+        spread 5
+        offset x=0 y=5
+    }
+
+    struts {}
+}
+
+spawn-at-startup "waybar"
+spawn-at-startup "swaybg" "-i" "@wallpaper@" "-m" "fill"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "foot" "--server"
+
+hotkey-overlay {
+    skip-at-startup
+    hide-not-bound
+}
+
+prefer-no-csd
+
+//screenshotss
+screenshot-path "~/Obrázky/Snímky obrazovky/Snímek-%Y-%m-%d_%H-%M-%S.png"
+
+animations {
+    // off
+    // slowdown 3.0
+}
+
+window-rule {
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+
+window-rule {
+    match app-id="xdg-desktop-portal-gtk"
+    min-width 700
+    min-height 500
+    max-width 1000
+    max-height 800
+    open-floating true
+}
+
+window-rule {
+    geometry-corner-radius 0
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="Tor Browser"
+    open-floating true
+}
+
+window-rule {
+    match app-id="weather-term"
+    open-maximized true
+}
+
+//rmpcc
+window-rule {
+    match app-id="rmpc"
+
+    open-floating false
+
+    min-width 1918
+    max-width 1918
+
+    min-height 1046
+    max-height 1046
+}
+
+binds {
+
+    super+Minus { show-hotkey-overlay; }
+
+    super+return hotkey-overlay-title="Foot" { spawn "footclient" "-a" "Foot" "-T" "Foot"; }
+    super+D hotkey-overlay-title="Rofi" { spawn "sh" "-c" "pkill -x rofi || { rofi -show drun; }"; }
+    super+E hotkey-overlay-title="Brave" { spawn "brave"; }
+    super+Shift+E hotkey-overlay-title="Brave Incognito" { spawn "brave" "--incognito"; }
+    super+S hotkey-overlay-title="Rofi-passmenu" { spawn "sh" "-c" "pkill -x rofi || { rofi-passmenu; }"; }
+    super+A hotkey-overlay-title="Clipboard" { spawn "sh" "-c" "pkill -x rofi || { cliphist list | rofi -dmenu | cliphist decode | wl-copy; }"; }
+    super+y hotkey-overlay-title="Yazi" { spawn "footclient" "-a" "Yazi" "-T" "Yazi" "yazi"; }
+
+    super+W repeat=false { toggle-overview; }
+    super+Q repeat=false { close-window; }
+
+    super+Left  { focus-column-left; }
+    super+Ctrl+Down  { focus-window-down; }
+    super+Ctrl+Up    { focus-window-up; }
+    super+Right { focus-column-right; }
+    super+ctrl+left     { focus-column-left; }
+    super+ctrl+right     { focus-column-right; }
+
+    super+Shift+Left  { move-column-left; }
+    super+Shift+Up    { move-window-up-or-to-workspace-up; }
+    super+Shift+Down  { move-window-down-or-to-workspace-down; }
+    super+Shift+Right { move-column-right; }
+
+    super+Home { focus-column-first; }
+    super+End  { focus-column-last; }
+
+    super+down { focus-workspace-down; }
+    super+up   { focus-workspace-up; }
+
+    super+Page_Up { move-workspace-up; }
+    super+Page_Down { move-workspace-down; }
+
+    super+dead_acute { set-column-width "+10%"; }
+    super+Equal { set-column-width "-10%"; }
+
+    super+V { toggle-window-floating; }
+    super+Shift+V { switch-focus-between-floating-and-tiling; }
+
+    super+t { toggle-column-tabbed-display; }
+
+    super+ctrl+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    super+ctrl+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+    super+WheelScrollDown      { focus-column-right; }
+    super+WheelScrollUp        { focus-column-left; }
+    super+shift+WheelScrollDown { move-column-right; }
+    super+shift+WheelScrollUp   { move-column-left; }
+
+    super+1 { focus-workspace 1; }
+    super+2 { focus-workspace 2; }
+    super+3 { focus-workspace 3; }
+    super+4 { focus-workspace 4; }
+    super+5 { focus-workspace 5; }
+    super+6 { focus-workspace 6; }
+    super+7 { focus-workspace 7; }
+    super+8 { focus-workspace 8; }
+    super+9 { focus-workspace 9; }
+ 
+    super+shift+1 { move-column-to-workspace 1; }
+    super+shift+2 { move-column-to-workspace 2; }
+    super+shift+3 { move-column-to-workspace 3; }
+    super+shift+4 { move-column-to-workspace 4; }
+    super+shift+5 { move-column-to-workspace 5; }
+    super+shift+6 { move-column-to-workspace 6; }
+    super+shift+7 { move-column-to-workspace 7; }
+    super+shift+8 { move-column-to-workspace 8; }
+    super+shift+9 { move-column-to-workspace 9; }
+
+    super+plus { focus-workspace 1; }
+    super+ecaron { focus-workspace 2; }
+    super+scaron { focus-workspace 3; }
+    super+ccaron { focus-workspace 4; }
+    super+rcaron { focus-workspace 5; }
+    super+zcaron { focus-workspace 6; }
+    super+yacute { focus-workspace 7; }
+    super+aacute { focus-workspace 8; }
+    super+iacute { focus-workspace 9; }
+
+    super+shift+plus { move-column-to-workspace 1; }
+    super+shift+ecaron { move-column-to-workspace 2; }
+    super+shift+scaron { move-column-to-workspace 3; }
+    super+shift+ccaron { move-column-to-workspace 4; }
+    super+shift+rcaron { move-column-to-workspace 5; }
+    super+shift+zcaron { move-column-to-workspace 6; }
+    super+shift+yacute { move-column-to-workspace 7; }
+    super+shift+aacute { move-column-to-workspace 8; }
+    super+shift+iacute { move-column-to-workspace 9; }
+
+    super+Comma  { consume-or-expel-window-left; }
+    super+Period { consume-or-expel-window-right; }
+
+    super+R { switch-preset-column-width; }
+    super+Shift+F { maximize-window-to-edges; }
+    super+Ctrl+F { fullscreen-window; }
+    super+F { maximize-column; }
+    super+Alt+F { expand-column-to-available-width; }    
+
+    Print { screenshot; }
+    shift+Print { screenshot-screen; }
+    ctrl+Print { screenshot-window; }
+
+    super+x hotkey-overlay-title="OCR" { spawn "ocr"; }
+    super+shift+x hotkey-overlay-title="Hyprpicker" { spawn "sh" "-c" "hyprpicker | wl-copy"; }
+    super+shift+r hotkey-overlay-title="Switch Preset Column Widths on Workspace" { spawn "bash" "/home/linuxdrak/nixos.files/config/niri/resize_windows.sh"; }
+    
+    super+L hotkey-overlay-title="Swaylock" { spawn "swaylock"; } 
+    super+N hotkey-overlay-title="Exit niri" { spawn "bash" "-c" "systemctl --user start backup-state-files.service && cat /dev/null > ~/.bash_history && niri msg action quit"; }
+    super+ctrl+S hotkey-overlay-title="Shutdown" { spawn "bash" "-c" "systemctl --user start backup-state-files.service && cat /dev/null > ~/.bash_history && systemctl poweroff"; }
+    super+ctrl+r hotkey-overlay-title="Restart" { spawn "bash" "-c" "systemctl --user start backup-state-files.service && systemctl reboot"; }
+
+    super+I hotkey-overlay-title="Nix-search-tv" { spawn "footclient" "-a" "Nix-search-TV" "-T" "Nix-search-TV" "ns"; }
+
+    XF86AudioRaiseVolume { spawn "pamixer" "-i" "5"; }
+    XF86AudioLowerVolume { spawn "pamixer" "-d" "5"; }
+    XF86AudioMute { spawn "pamixer" "-t"; }
+
+    //brightness
+    //XF86MonBrightnessUp { spawn "brightnessctl" "set" "5%+"; }
+    //XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
+}

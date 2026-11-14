@@ -1,0 +1,142 @@
+[mgr]
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "a" ]
+run  = "shell 'zip -r archiv.zip \"$@\"' --block"
+desc = "Zip"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "e" ]
+run  = "shell '7z e \"$1\"' --block --confirm"
+desc = "Extract"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "t" ]
+run  = "cd ~/.local/share/Trash/files"
+desc = "Go to trash"
+
+#flashnamee
+[[mgr.prepend_keymap]]
+on   = [ "g", "f" ]
+run  = 'cd "/run/media/linuxdrak/16 GB DRIVE"'  
+desc = "Go to flash drive"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "n" ]
+run  = 'cd ~/nixos.files'
+desc = "Go to NixOS config"
+
+[[mgr.prepend_keymap]]
+on   = "y"
+run  = "plugin ucp copy"
+desc = "Copy"
+
+[[mgr.prepend_keymap]]
+on   = "p"
+run  = "plugin ucp paste"
+desc = "Paste"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "s" ]
+run  = "shell 'localsend_app \"$@\"' --confirm"
+desc = "LocalSend"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "r" ]
+run  = 'shell "exiftool -all= -overwrite_original \"$1\"" --confirm'
+desc = "Exiftool remove"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "R" ]
+run  = 'shell "mat2 --inplace \"$1\"" --confirm'
+desc = "Mat2 remove"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "v" ]
+run  = 'shell "footclient --hold exiftool \"$1\"" --confirm'
+desc = "Exiftool view"
+
+[[mgr.prepend_keymap]]
+on   = [ "c", "w" ]
+run  = "shell 'niri msg action spawn -- sh -c \"swaybg -i \\\"$1\\\" -m fill\"' --confirm"
+desc = "Set as wallpaper"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "m" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=mtime\" --config=\"list.reverse=yes\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort by modified time (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "M" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=mtime\" --config=\"list.reverse=no\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort by modified time reverse (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "a" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=alpha\" --config=\"list.reverse=no\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort alphabetically (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "A" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=alpha\" --config=\"list.reverse=yes\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort alphabetically reverse (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "s" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=size\" --config=\"list.reverse=yes\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort by size (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "S" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=size\" --config=\"list.reverse=no\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort by size reverse (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "i", "r" ]
+run  = "shell 'swayimg --config=\"general.mode=viewer\" --config=\"list.order=random\" --config=\"gallery.selected_scale=1\" \"$1\"' --confirm"
+desc = "Sort randomly (open swayimg)"
+
+[[mgr.prepend_keymap]]
+on   = [ "+" ]
+run  = "tab_switch 0"
+desc = "Přepnout na 1. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "ě" ]
+run  = "tab_switch 1"
+desc = "Přepnout na 2. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "š" ]
+run  = "tab_switch 2"
+desc = "Přepnout na 3. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "č" ]
+run  = "tab_switch 3"
+desc = "Přepnout na 4. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "ř" ]
+run  = "tab_switch 4"
+desc = "Přepnout na 5. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "ž" ]
+run  = "tab_switch 5"
+desc = "Přepnout na 6. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "ý" ]
+run  = "tab_switch 6"
+desc = "Přepnout na 7. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "á" ]
+run  = "tab_switch 7"
+desc = "Přepnout na 8. tab"
+
+[[mgr.prepend_keymap]]
+on   = [ "í" ]
+run  = "tab_switch 8"
+desc = "Přepnout na 9. tab"

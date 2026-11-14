@@ -1,0 +1,22 @@
+scheme: "tokyo-night"
+author: "linuxdrak"
+
+# --- ODSTÍNY POZADÍ A TEXTU (UI, panely, komentáře) ---
+base01: "222436" # Hlavní pozadí (background)
+base00: "1e2030" # Tmavší/Alternativní pozadí (normal black)
+base02: "444a73" # Výběr textu a zvýraznění (bright black)
+base03: "828bb8" # Komentáře a neaktivní text (normal white / šedá)
+base04: "828bb8" # Tmavší text
+base05: "c8d3f5" # Hlavní barva textu (foreground)
+base06: "c8d3f5" # Světlejší text 
+base07: "c8d3f5" # Nejsvětlejší text (bright white)
+
+# --- PESTRÉ BARVY (Klíčová slova, chyby, grafika) ---
+base08: "ff757f" # Červená (red)
+base09: "ff966c" # Oranžová (V Alacritty configu chybí, doplnil jsem přesnou Tokyonight oranžovou)
+base0A: "ffc777" # Žlutá (yellow)
+base0B: "c3e88d" # Zelená (green)
+base0C: "86e1fc" # Tyrkysová (cyan)
+base0D: "82aaff" # Modrá (blue)
+base0E: "c099ff" # Fialová (magenta)
+base0F: "c53b53" # Tmavě červená / Hnědá (Doplněno z Tokyonight palety pro úplnost)
