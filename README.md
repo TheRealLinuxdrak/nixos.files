@@ -117,7 +117,7 @@ flowchart TD
 
 This guide will walk you through the installation of NixOS using the graphical installer.
 
-You can also follow [this video guide (vimjoyer)](https://www.youtube.com/watch?v=AI8EBp0dqVs), or other youtube NixOS (or Linux in general) graphical installation guides (Calamares) for better understanding the process.
+You can also follow [this video guide (vimjoyer)](https://www.youtube.com/watch?v=AI8EBp0dqVs), or other youtube NixOS [(or Linux in general)](https://www.youtube.com/watch?v=mXyN1aJYefc) graphical installation guides (Calamares) for better understanding the process.
 
 ### Part 1: Preparing the Bootable USB Drive
 
@@ -232,14 +232,14 @@ Because `home.nix` links some configuration files directly using `mkOutOfStoreSy
 
 3. **Copy the configuration:** Create the target home directory for your user and copy the repository:
    ```
-   mkdir -p /mnt/home/linuxdrak/
-   cp -a /mnt/usb/nixos.files/. /mnt/home/linuxdrak/
+   mkdir -p /mnt/home/linuxdrak/nixos.files/
+   cp -a /mnt/usb/nixos.files/. /mnt/home/linuxdrak/nixos.files/
    umount /mnt/usb
    ```
 
 4. **Replace Hardware Config:** Overwrite your old hardware config with the newly generated one from the installer:
    ```
-   cp /mnt/etc/nixos/hardware-configuration.nix /mnt/home/linuxdrak/nixos.files/hardware-configuration.nix
+   cp /mnt/etc/nixos/hardware-configuration.nix /mnt/home/linuxdrak/nixos.files/
    ```
    *(Verification: Run `ls -la /mnt/home/linuxdrak/nixos.files` and ensure all files, including the newly overwritten hardware config, are present).*
 
@@ -386,8 +386,8 @@ When creating the encrypted partition with `cryptsetup luksFormat`, the program 
 3. **Copy the configuration:** Create the target home directory for your user and copy the repository:
 
    ```
-   mkdir -p /mnt/home/linuxdrak/
-   cp -a /mnt/usb/nixos.files/. /mnt/home/linuxdrak/
+   mkdir -p /mnt/home/linuxdrak/nixos.files/
+   cp -a /mnt/usb/nixos.files/. /mnt/home/linuxdrak/nixos.files/
    umount /mnt/usb
    
    ```
@@ -395,7 +395,7 @@ When creating the encrypted partition with `cryptsetup luksFormat`, the program 
 4. **Replace Hardware Config:** Overwrite your old hardware config with the newly generated one:
 
    ```
-   cp /mnt/etc/nixos/hardware-configuration.nix /mnt/home/linuxdrak/nixos.files/hardware-configuration.nix
+   cp /mnt/etc/nixos/hardware-configuration.nix /mnt/home/linuxdrak/nixos.files/
    
    ```
 
